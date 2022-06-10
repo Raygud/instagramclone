@@ -8,4 +8,4 @@
 
 ## Rest api
 
-> Rest api is running on heroku and can be found [[Here](https://github.com/Raygud/instagramServer/)]
+> Rest api is running on heroku and can be found [Github.com/raygud/instagramServer](https://github.com/Raygud/instagramServer/)
