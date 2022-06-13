@@ -16,7 +16,7 @@
 #### Endpoints
 1. - /api
 2. - /api/Posts
-3. -/api/Post
+3. - /api/Post
 
 ## Nav Design
 
