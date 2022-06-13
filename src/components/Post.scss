@@ -1,9 +1,17 @@
+$BorderRadius: 5px;
+
 #Post {
     width: 390px;
+    outline: 1px solid rgb(214, 214, 214);
+    margin: auto;
+    margin-top: 3vw;
+    border-radius: $BorderRadius;
+    width: 99.5%;
 
     div {
         display: flex;
         justify-content: flex-start;
+        padding: 1vw;
 
         img {
             width: 10vw;
@@ -12,11 +20,16 @@
             border-radius: 50%;
         }
 
-        h2 {}
+        h2 {
+            font-size: 4vw;
+            line-height: 10vw;
+            margin-left: 4vw;
+        }
 
         div {
             margin-left: 55vw;
-            font-size: 8vw;
+            font-size: 10vw;
+            line-height: 2.3vw;
         }
     }
 
@@ -25,11 +38,50 @@
         height: 390px;
     }
 
-    #Likes {}
+    #LCS {
+        display: flex;
+        justify-content: flex-start;
 
-    h6 {}
+        .Fa {
+            font-size: 6vw;
+            margin-left: 4vw;
+        }
 
-    #CommentPw {}
+        #BookMark {
+            margin-left: 60vw;
+        }
+    }
 
-    #Time {}
+    #Likes {
+        margin-left: 4vw;
+    }
+
+    #Description {
+        margin: 0;
+        padding: 0;
+
+        h5 {
+            font-size: 4vw;
+            margin-left: 4vw;
+            margin-right: 2vw;
+        }
+
+        p {}
+
+        span {
+            margin-left: 0.7vw;
+        }
+    }
+
+    #CommentPw {
+        margin-left: 4vw;
+        color: rgba(0, 0, 0, 0.479);
+        font-size: 3.5vw;
+        margin-bottom: 2.5vw;
+    }
+
+    #Time {
+        margin-left: 4vw;
+        font-size: 2.5vw;
+    }
 }
