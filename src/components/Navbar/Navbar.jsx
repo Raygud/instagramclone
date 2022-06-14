@@ -9,6 +9,7 @@ export default function Welcome(props) {
         <>
             <div id="Top"></div>
             <nav>
+
                 <h1><a href="#Top">Instagram</a></h1>
                 <ol>
                     <li><Link to="/"><FontAwesomeIcon icon={faHouse} /></Link></li>

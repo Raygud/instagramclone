@@ -7,20 +7,62 @@ import { faHeart, faComment, faPaperPlane } from '@fortawesome/free-solid-svg-ic
 export default function Post({ post }) {
     const ReadMoreText = useRef(null);
     const Liked = useRef(null);
-    const [count, ReadMore] = useState(post.description.substr(0, 36) + "...");
+    const Likes = useRef(null);
+    const [count, ReadMore] = useState(post.description.substr(0, 30) + "...");
+    let DisplayedLikes = parseInt(post.likes)
     function RemoveMe() {
 
         ReadMoreText.current.style.display = "none"
         console.log(ReadMoreText.current)
     }
-    function Like() {
+    function Like(Postid) {
+        const SendPost = async (Action) => {
+            let PostId = Postid
+            const data = { PostId, Action };
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            const response = await fetch('http://localhost:3001/api/Like', options);
+
+
+        }
+
         if (post.LikedBy != "Raygud") {
-            console.log(Liked.current)
+            console.log("Liked")
+            post.LikedBy = "Raygud"
             Liked.current.style.color = "red"
+            DisplayedLikes = DisplayedLikes + 1
+            Likes.current.innerHTML = (DisplayedLikes) + " Likes"
+            console.log(DisplayedLikes)
+            console.log(Liked.current.style.color)
+            SendPost("Like")
         }
         else {
-            console.log("Allready liked")
+            console.log("Unliked")
+            Liked.current.style.color = "inherit"
+            console.log(Liked.current.style.color)
+            if (DisplayedLikes > 0) { DisplayedLikes = DisplayedLikes - 1 }
+            else { DisplayedLikes = DisplayedLikes }
+            console.log(DisplayedLikes)
+            Likes.current.innerHTML = (DisplayedLikes) + " Likes"
+            post.LikedBy = ""
+            SendPost("Unlike")
         }
+    }
+
+    function setColor() {
+        setTimeout(function () {
+            if (post.LikedBy == "Raygud") {
+                Liked.current.style.color = "red"
+            }
+            else {
+                Liked.current.style.color = "black"
+            }
+        }, 1);
     }
     return (
         <div id="Post" className="Post">
@@ -32,9 +74,9 @@ export default function Post({ post }) {
             <img src={post.image}></img>
             <div id="LCS">
                 {post.LikedBy == "Raygud" ? (
-                    <span ref={Liked}><FontAwesomeIcon style={{ color: 'red' }} className="Fa" onClick={() => Like()} icon={faHeart} /></span>
+                    <span ref={Liked}><FontAwesomeIcon className="Fa" onLoad={setColor()} onClick={() => Like(post.PostId)} icon={faHeart} /></span>
                 ) : (
-                    <span ref={Liked}><FontAwesomeIcon className="Fa" onClick={() => Like()} icon={faHeart} /></span>
+                    <span ref={Liked}><FontAwesomeIcon className="Fa" onLoad={setColor()} onClick={() => Like(post.PostId)} icon={faHeart} /></span>
 
                 )}
 
@@ -42,7 +84,7 @@ export default function Post({ post }) {
                 <FontAwesomeIcon className="Fa" id="Send" icon={faPaperPlane} />
                 <span id="BookMark">BM</span>
             </div>
-            <div id="Likes" className="Likes">{post.likes} likes</div>
+            <div ref={Likes} id="Likes" className="Likes">{post.likes} likes</div>
             <div id="Description">
                 <h5>{post.name}</h5>
                 <p>{post.description.length > 27 ? (
