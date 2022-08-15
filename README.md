@@ -4,9 +4,9 @@
 ### ToDo list
 
 - [✅] Rest api
-- [ ] Nav Design
+- [✅] Nav Design
 - [ ] Stories Design 
-- [ ] Post Design
+- [✅] Post Design
 
 ## Rest api
 
